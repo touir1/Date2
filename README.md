@@ -1,2 +1,2 @@
-# Time2
+# Date2
 Javascript module for manipulating date
