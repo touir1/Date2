@@ -333,7 +333,6 @@
 			var d = transformDate2ToString(_date);
 			return dayDifference(stringDate, d, delim);
 		}
-		//is it working?
 
 		/*if (obj instanceof Date2) return obj;
 		if (!(this instanceof Date2)) return new Date2(obj);*/
