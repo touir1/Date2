@@ -18,13 +18,19 @@
 		var date2 = new Date2('25 03 2016');
 		console.log('second date: '+ date2.toString());
 		console.log('day difference: '+ date.dayDifference(date2));
-
-		console.log('date: '+ date);
+		var date3 = new Date2('30 05 2017');
+		console.log('third date: '+ date3.toString());
+		console.log(date3.toString() + ' is in Range [' + date2.toString() + ',' + date.toString() + '] ?: ' + date3.isInRange(date,date2));
+		var date3 = new Date2('26 03 2016');
+		console.log('third date: ' + date3.toString());
+		console.log(date3.toString() + ' is in Range [' + date2.toString() + ',' + date.toString() + '] ?: ' + date3.isInRange(date,date2));
+		/*var date2 = new Date2('01-01-2016','-');
+		console.log('date2: '+date);
 		console.log('date2: '+ date2);
 		console.log('--------------');
 		date2.setDelim('#');
 		console.log('date2: '+date);
-		console.log('date2: '+ date2);
+		console.log('date2: '+ date2);*/
 		
 	</script>
 	</body>

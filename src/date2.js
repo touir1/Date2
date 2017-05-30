@@ -1,6 +1,6 @@
 (function(){
 
-	var Date2 = function(_date,_delim) {
+	var Date2 = function(_date, _delim) {
 		
 		/** Attribute **/
 
@@ -183,13 +183,24 @@
 		}
 
 		function inRangeDate(first, second, totest, delim){
-			var debut = _.map(first.split(delim), (data) => {return parseInt(data)} );
-			var fin =  _.map(second.split(delim), (data) => {return parseInt(data)} );
-			var test = _.map(totest.split(delim), (data) => {return parseInt(data)} );
+			var tmp = first.split(delim);
+			var debut = [parseInt(tmp[0]),parseInt(tmp[1]),parseInt(tmp[2])];
+
+			tmp = second.split(delim);
+			var fin = [parseInt(tmp[0]),parseInt(tmp[1]),parseInt(tmp[2])];
+
+			tmp = totest.split(delim);
+			var test = [parseInt(tmp[0]),parseInt(tmp[1]),parseInt(tmp[2])];
 
 			var sumDebut = debut[2]*372 + debut[1]*31 + debut[0];
 			var sumFin = fin[2]*372 + fin[1]*31 + fin[0];
 			var sumTest = test[2]*372 + test[1]*31 + test[0];
+
+			if(sumDebut > sumFin){
+				sumDebut = sumDebut + sumFin;
+				sumFin = sumDebut - sumFin;
+				sumDebut = sumDebut - sumFin;
+			};
 
 			return (sumTest >= sumDebut) && (sumTest <= sumFin);
 		}
