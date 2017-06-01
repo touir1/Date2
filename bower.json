@@ -1,0 +1,20 @@
+{
+  "name": "date2",
+  "homepage": "https://github.com/touir1/Date2",
+  "description": "Javascript module for manipulating date",
+  "main": "./src/date2.js",
+  "keywords": [
+    "date"
+  ],
+  "authors": [
+    "Mohamed Ali Touir <touir.mat@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

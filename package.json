@@ -1,0 +1,25 @@
+{
+  "name": "date2",
+  "version": "1.0.0",
+  "description": "Javascript module for manipulating date",
+  "main": "./date2.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/touir1/Date2.git"
+  },
+  "keywords": [
+    "date"
+  ],
+  "author": "Touir Mohamed Ali <touir.mat@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/touir1/Date2/issues"
+  },
+  "homepage": "https://github.com/touir1/Date2#readme"
+}
