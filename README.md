@@ -6,6 +6,11 @@ Date2 is a Javascript module created to manipulate the date. It was designed to 
 
 [wiki](https://github.com/touir1/Date2/wiki) - [website](https://touir1.github.io/Date2/)
 
+## Download ##
+
+* npm: _npm install date-2 --save_
+* bower: _bower install date-2 --save_
+
 ## Dependencies ##
 
 This module was developed in pure javascript so it has **no dependencies**.
@@ -29,7 +34,7 @@ var Date2 = require('./date2.js');
 var date = new Date2();
 ```
 
-## Functionalities
+## Functionalities ##
 
 ```javascript
 
@@ -49,20 +54,20 @@ date.isInRange(date1,date2) // returns true if date between date1 and date2 incl
 date.dayDifference(date2) // returns the difference in days between date and date2
 ```
 
-## Changelog
+## Changelog ##
 
 * 1.0.0: the first release
 
-## Authors
+## Authors ##
 
 * Mohamed Ali Touir
   * Github: [https://github.com/touir1](https://github.com/touir1)
   * Email: [touir.mat@gmail.com](touir.mat@gmail.com)
 
-## License 
+## License ##
 
 Date2 is published under the [MIT license](http://www.opensource.org/licenses/mit-license)
 
-## Special thanks 
+## Special thanks ##
 
 underscore.js used from [jashkenas/underscore](https://github.com/jashkenas/underscore).
