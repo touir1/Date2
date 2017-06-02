@@ -1,4 +1,4 @@
-## Date2
+# Date2 #
 
 [![npm](https://img.shields.io/npm/v/date-2.svg?style=flat-square&maxAge=600)](https://www.npmjs.com/package/date-2) [![Bower](https://img.shields.io/bower/v/date-2.svg?style=flat-square&maxAge=600)](https://github.com/touir1/Date2) [![npm](https://img.shields.io/npm/dm/date-2.svg?style=flat-square&maxAge=600)](https://www.npmjs.com/package/date-2) [![npm](https://img.shields.io/npm/l/date-2.svg?style=flat-square)]()
 
