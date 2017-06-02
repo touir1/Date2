@@ -1,6 +1,6 @@
 # Date2 #
 
-[![npm](https://img.shields.io/npm/v/date-2.svg?style=flat-square&maxAge=600)](https://www.npmjs.com/package/date-2) [![Bower](https://img.shields.io/bower/v/date-2.svg?style=flat-square&maxAge=600)](https://github.com/touir1/Date2) [![npm](https://img.shields.io/npm/dm/date-2.svg?style=flat-square&maxAge=600)](https://www.npmjs.com/package/date-2) [![npm](https://img.shields.io/npm/l/date-2.svg?style=flat-square)]()
+[![npm](https://img.shields.io/npm/v/date-2.svg?style=flat-square&maxAge=600)](https://www.npmjs.com/package/date-2) [![Bower](https://img.shields.io/bower/v/date-2.svg?style=flat-square&maxAge=600)](https://github.com/touir1/Date2) [![npm](https://img.shields.io/npm/dt/date-2.svg?style=flat-square&maxAge=600)](https://www.npmjs.com/package/date-2) [![npm](https://img.shields.io/npm/l/date-2.svg?style=flat-square)]()
 
 Date2 is a Javascript module created to manipulate the date. It was designed to easily manipulate the date and it provides a pretty fair number of functions that are easy to use. This module can be used in a **Javascript** or a **Node.js** application.
 
