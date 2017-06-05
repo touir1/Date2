@@ -24,12 +24,15 @@ to use Date2 module with javascript you need to:
 ```
 
 ```javascript
+
 var date = new Date2(); //gives the current date
 var date = new Date2('01-01-2017') //detects automatically the separator and it uses DD MM YYYY as a format
 var date = new Date2('01-01-2017','-') //the second parameter is optional, it specifies the separator used
 ```
 and for a Node.js application:
+
 ```node
+
 var Date2 = require('date-2');
 var date = new Date2();
 ```
