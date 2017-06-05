@@ -5,8 +5,8 @@
 		/** Attribute **/
 
 		var date = new Date(),
-			delim = '/',
-			stringDate = dateToString(date,delim);
+		delim = '/',
+		stringDate = dateToString(date,delim);
 
 		/** Constructor **/
 
@@ -74,37 +74,50 @@
 			return d != 0 && d!=6;
 		}
 
-		function addNonWorkingDays(date, days, delim){
+		function addWorkingDays(date, days, delim){
+			var toAdd = days;
+			var weekDay = dayOfWeek(date,delim);
 			var d = date;
-			var toAdd = 0;
-			var final = 0;
-			var begin = 0;
-			for(var i=1;i<=days;i++){
-				if(!isWorkingDay(addDays(date,i,delim),delim)){
-					toAdd++;
+
+			if(weekDay===0){
+				d = addDays(d,1,delim);
+				weekDay = dayOfWeek(d,delim);
+			}
+			else if(weekDay===6){
+				d = addDays(d,2,delim);
+				weekDay = dayOfWeek(d,delim);
+			}
+			if(toAdd<=6-weekDay){
+				return addDays(d,toAdd,delim);
+			}
+			else{
+				d = addDays(d,6-weekDay+2,delim);
+				toAdd -= 6-weekDay;
+				var weeks = Math.floor(toAdd / 5);
+				var left = toAdd % 5;
+				if(left ===0){
+					return addDays(d,(weeks-1)*7 + 5,delim);
+				}
+				else{
+					return addDays(d,weeks*7 + left,delim);
 				}
 			}
+		}
 
-			final = days+toAdd;
-			begin = days;
-			d = addDays(d,days,delim);
-
-			while(toAdd){
-				var last = toAdd;
-				toAdd = 0;
-				for(var i=begin+1;i<=final;i++){
-					if(!isWorkingDay(addDays(d,i-begin,delim),delim)){
-						toAdd++;
-					}
-				}
-
-				var f = final;
-				final += toAdd;
-				begin = f;
-				d = addDays(d,last,delim);
+		function nextWorkingDay(date,delim){
+			var weekDay = dayOfWeek(date,delim);
+			if(weekDay === 0){
+				return addDays(date,1,delim);
 			}
-
-			return addDays(date,final,delim);
+			else if(weekDay ===6){
+				return addDays(date,2,delim);
+			}
+			else if(weekDay ===5){
+				return addDays(date,3,delim);
+			}
+			else{
+				return addDays(date,1,delim);
+			}
 		}
 
 		function addDays(date,days,delim){
@@ -242,7 +255,7 @@
 
 		function dayDifference(date1, date2, delim){
 			var d1 = new Date(),
-				d2 = new Date();
+			d2 = new Date();
 
 			if(compareDate(date1,'>',date2,delim)){
 				d2 = stringToDate(date1,delim);
@@ -284,8 +297,8 @@
 			return isWorkingDay(stringDate,delim);
 		};
 
-		this.addNonWorkingDays = function(days){
-			var x = addNonWorkingDays(stringDate,days,delim);
+		this.addWorkingDays = function(days){
+			var x = addWorkingDays(stringDate,days,delim);
 			update(x);
 		}
 
@@ -345,6 +358,33 @@
 			return dayDifference(stringDate, d, delim);
 		}
 
+		this.getNextDay = function(){
+			return new Date2(addDays(stringDate,1,delim));
+		}
+
+		this.nextDay = function(){
+			var x = addDays(stringDate,1,delim);
+			update(x);
+		}
+
+		this.getPreviousDay = function(){
+			return new Date2(removeDays(stringDate,1,delim));
+		}
+
+		this.previousDay = function(){
+			var x = removeDays(stringDate,1,delim);
+			update(x);
+		}
+
+		this.getNextWorkingDay = function(){
+			return new Date2(nextWorkingDay(stringDate,delim));
+		}
+
+		this.nextWorkingDay = function(){
+			var x = nextWorkingDay(stringDate,delim);
+			update(x);
+		}
+
 		/*if (obj instanceof Date2) return obj;
 		if (!(this instanceof Date2)) return new Date2(obj);*/
 		
@@ -371,4 +411,4 @@
 
 	/** End copie **/
 
-})();
+}());

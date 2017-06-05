@@ -2,7 +2,7 @@
   "name": "date-2",
   "version": "1.0.0",
   "description": "Javascript module for manipulating date",
-  "main": "./date2.js",
+  "main": "./date-2.js",
   "directories": {
     "test": "test"
   },

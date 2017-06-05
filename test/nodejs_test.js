@@ -1,4 +1,4 @@
-var Date2 = require('../src/date2.min.js');
+var Date2 = require('../src/date-2');
 var date = new Date2('25-03-2016','-');
 console.log('date: ' + date);
 date.addDays(3);

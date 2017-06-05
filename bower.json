@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "homepage": "https://github.com/touir1/Date2",
   "description": "Javascript module for manipulating date",
-  "main": "./src/date2.js",
+  "main": "./src/date-2.js",
   "keywords": [
     "date"
   ],
