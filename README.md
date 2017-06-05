@@ -20,7 +20,7 @@ This module was developed in pure javascript so it has **no dependencies**.
 to use Date2 module with javascript you need to:
 
 ```html
-<script type="text/javascript" src="./date2.js"></script>
+<script type="text/javascript" src="path-to-date-2.js"></script>
 ```
 
 ```javascript
@@ -30,7 +30,7 @@ var date = new Date2('01-01-2017','-') //the second parameter is optional, it sp
 ```
 and for a Node.js application:
 ```node
-var Date2 = require('./date2.js');
+var Date2 = require('date-2');
 var date = new Date2();
 ```
 
@@ -40,7 +40,7 @@ var date = new Date2();
 
 date.setDelim(delim); // changes the delimitor
 date.isWorkingDay(); // returns true if it's saturday or sunday
-date.addNonWorkingDays(days); // adds days to the date while ignoring saturday and sunday
+date.addWorkingDays(days); // adds days to the date while ignoring saturday and sunday
 date.addDays(days); // adds days to the date
 date.removeDays(days); // removes days from the date
 date.getJSDate(); // returns the Javascript Date object
@@ -48,15 +48,22 @@ date.getDay(); // returns the day of the month as an integer
 date.getMonth(); // returns the month
 date.getYear(); // returns the year
 date.dayOfWeek(); // returns the day of the week as an integer (between 0 and 6)
-date.dayOfWeekLetters(langage) // returns the acronym of the day of the week (langage: 'en' / 'fr' and is in english by default)
-date.compareDate(date2) // compares between date and date2 (-1: date < date2, 1: date > date2, 0: date == date2)
-date.isInRange(date1,date2) // returns true if date between date1 and date2 inclusive
-date.dayDifference(date2) // returns the difference in days between date and date2
+date.dayOfWeekLetters(langage); // returns the acronym of the day of the week (langage: 'en' / 'fr' and is in english by default)
+date.compareDate(date2); // compares between date and date2 (-1: date < date2, 1: date > date2, 0: date == date2)
+date.isInRange(date1,date2); // returns true if date between date1 and date2 inclusive
+date.dayDifference(date2); // returns the difference in days between date and date2
+date.getNextDay(); // returns the next date
+date.getPreviousDay(); // returns the previous date
+date.getNextWorkingDay(); // returns the next working date
+date.nextDay(): // changes the date to the next date
+date.previousDay(); // changes the date to the previous date
+date.nextWorkingDay(); // change the date to the next working date
 ```
 
 ## Changelog ##
 
-* 1.0.0: the first release
+* 1.1.0: Several changes (new functions and updated some functions)
+* 1.0.0: The first release
 
 ## Authors ##
 
