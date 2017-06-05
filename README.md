@@ -65,6 +65,7 @@ date.nextWorkingDay(); // change the date to the next working date
 
 ## Changelog ##
 
+* 1.1.1: Minor changes (test files)
 * 1.1.0: Several changes (new functions and updated some functions)
 * 1.0.0: The first release
 
