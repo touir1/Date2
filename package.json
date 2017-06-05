@@ -1,6 +1,6 @@
 {
   "name": "date-2",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Javascript module for manipulating date",
   "main": "./date-2.js",
   "directories": {
