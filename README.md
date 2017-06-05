@@ -58,7 +58,7 @@ date.dayDifference(date2); // returns the difference in days between date and da
 date.getNextDay(); // returns the next date
 date.getPreviousDay(); // returns the previous date
 date.getNextWorkingDay(); // returns the next working date
-date.nextDay(): // changes the date to the next date
+date.nextDay(); // changes the date to the next date
 date.previousDay(); // changes the date to the previous date
 date.nextWorkingDay(); // change the date to the next working date
 ```
