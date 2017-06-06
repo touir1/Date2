@@ -70,10 +70,10 @@ date.getLangage(); // gets the langage of the date object
 
 ## Changelog ##
 
-* [1.2.0](https://github.com/touir1/Date2/releases/tag/1.2.0)1.2.0: Several changes (new functions and updated some others)
-* [1.1.1](https://github.com/touir1/Date2/releases/tag/1.1.1)1.1.1: Minor changes (test files)
-* [1.1.0](https://github.com/touir1/Date2/releases/tag/1.1.0)1.1.0: Several changes (new functions and updated some functions)
-* [1.0.0](https://github.com/touir1/Date2/releases/tag/1.0.0)1.0.0: The first release
+* [1.2.0](https://github.com/touir1/Date2/releases/tag/1.2.0): Several changes (new functions and updated some others)
+* [1.1.1](https://github.com/touir1/Date2/releases/tag/1.1.1): Minor changes (test files)
+* [1.1.0](https://github.com/touir1/Date2/releases/tag/1.1.0): Several changes (new functions and updated some functions)
+* [1.0.0](https://github.com/touir1/Date2/releases/tag/1.0.0): The first release
 
 ## Authors ##
 
