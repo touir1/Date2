@@ -1,5 +1,7 @@
 (function(){
 
+	var lang = "en";
+
 	var Date2 = function(_date, _delim) {
 		
 		/** Attribute **/
@@ -75,6 +77,8 @@
 		}
 
 		function addWorkingDays(date, days, delim){
+			if(days === 0)
+				return date;
 			var toAdd = days;
 			var weekDay = dayOfWeek(date,delim);
 			var d = date;
@@ -104,6 +108,38 @@
 			}
 		}
 
+		function removeWorkingDays(date, days, delim){
+			if(days === 0)
+				return date;
+			var toRemove = days;
+			var weekDay = dayOfWeek(date,delim);
+			var d = date;
+
+			if(weekDay===0){
+				d = removeDays(d,2,delim);
+				weekDay = dayOfWeek(d,delim);
+			}
+			else if(weekDay===6){
+				d = removeDays(d,1,delim);
+				weekDay = dayOfWeek(d,delim);
+			}
+			if(toRemove < weekDay){
+				return removeDays(d,toRemove,delim);
+			}
+			else{
+				d = removeDays(d,weekDay+2,delim);
+				toRemove -= weekDay;
+				var weeks = Math.floor(toRemove/5);
+				var left = toRemove % 5;
+				if(left === 0){
+					return removeDays(d,(weeks-1)*7 + 5,delim);
+				}
+				else{
+					return removeDays(d,weeks*7 + left,delim);
+				}
+			}
+		}
+
 		function nextWorkingDay(date,delim){
 			var weekDay = dayOfWeek(date,delim);
 			if(weekDay === 0){
@@ -117,6 +153,19 @@
 			}
 			else{
 				return addDays(date,1,delim);
+			}
+		}
+
+		function previousWorkingDay(date,delim){
+			var weekDay = dayOfWeek(date,delim);
+			if(weekDay === 0){
+				return removeDays(date,2,delim);
+			}
+			else if(weekDay === 1){
+				return removeDays(date,3,delim);
+			}
+			else{
+				return removeDays(date,1,delim);
 			}
 		}
 
@@ -226,7 +275,7 @@
 			+date.getFullYear();
 		}
 
-		function dayOfWeekLetters(date, delim, lang){
+		function dayOfWeekLetters(date, delim){
 			if(lang === 'fr'){
 				var x = dayOfWeek(date,delim);
 				switch(x){
@@ -302,6 +351,11 @@
 			update(x);
 		}
 
+		this.removeWorkingDays = function(days){
+			var x = removeWorkingDays(stringDate,days,delim);
+			update(x);
+		}
+
 		this.addDays = function(days){
 			var x = addDays(stringDate,days,delim);
 			update(x);
@@ -349,8 +403,8 @@
 			return inRangeDate(first,second,stringDate,delim);
 		}
 
-		this.dayOfWeekLetters = function(lang){
-			return dayOfWeekLetters(stringDate,delim,lang);
+		this.dayOfWeekLetters = function(){
+			return dayOfWeekLetters(stringDate,delim);
 		}
 
 		this.dayDifference = function(_date){
@@ -383,6 +437,25 @@
 		this.nextWorkingDay = function(){
 			var x = nextWorkingDay(stringDate,delim);
 			update(x);
+		}
+
+		this.getPreviousWorkingDay = function(){
+			return new Date2(previousWorkingDay(stringDate,delim));
+		}
+
+		this.previousWorkingDay = function(){
+			var x = previousWorkingDay(stringDate,delim);
+			update(x);
+		}
+
+		this.setLangage = function(newLang){
+			if(newLang.trim().toLowerCase()!=="fr" && newLang.trim().toLowerCase()!=="en")
+				throw 'Incompatible Langage Exception: ' + "This module only accepts English('en') or French('fr') langages";
+			lang = newLang.trim().toLowerCase();
+		}
+
+		this.getLangage = function(){
+			return lang;
 		}
 
 		/*if (obj instanceof Date2) return obj;
