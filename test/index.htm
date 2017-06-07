@@ -1,7 +1,7 @@
 <html>
-	<head>
-	</head>
-	<body>
+<head>
+</head>
+<body>
 	
 	<script type="text/javascript" src="../src/date-2.js"></script>
 	<script>
@@ -28,7 +28,10 @@
 		date.previousWorkingDay();
 		console.log('to previous working day: '+date);
 		console.log('day of the week: ' + date.dayOfWeek());
-		console.log('day of week letters: ' + date.dayOfWeekLetters());
+		console.log('day of week letters short: ' + date.dayOfWeekLetterShort());
+		console.log('day of week letters full: ' + date.dayOfWeekLetterFull());
+		console.log('month letters short: ' + date.monthLetterShort());
+		console.log('month letters full: ' + date.monthLetterFull());
 		console.log('is a working day: ' + date.isWorkingDay());
 		var date2 = new Date2('25 03 2016');
 		console.log('second date: ' + date2);
@@ -47,7 +50,8 @@
 		console.log('current langage date1: '+date.getLangage());
 		console.log('current langage date2: '+date2.getLangage());
 		console.log('current langage date3: '+date3.getLangage());
+		console.log('date formatted in dddd,ddd, dd, d mmmm,mmm,mm,m yyyy,yy: '+date.toStringFormatted('dddd,ddd, dd, d mmmm,mmm,mm,m yyyy,yy'));
 		
 	</script>
-	</body>
+</body>
 </html>

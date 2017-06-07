@@ -1,6 +1,20 @@
 (function(){
 
 	var lang = "en";
+	var langAttr = {
+		'fr': {
+			'daysLetterShort': ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+			'daysLetterFull': ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+			'monthsLetterShort': ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'],
+			'monthsLetterFull': ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre']
+		},
+		'en': {
+			'daysLetterShort': ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+			'daysLetterFull': ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+			'monthsLetterShort': ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+			'monthsLetterFull': ['January','February','March','April','May','June','July','August','September','October','November','December']
+		}
+	}
 
 	var Date2 = function(_date, _delim) {
 		
@@ -275,31 +289,116 @@
 			+date.getFullYear();
 		}
 
-		function dayOfWeekLetters(date, delim){
+		function dayOfWeekLetterShort(date, delim){
+			var x = dayOfWeek(date,delim);
 			if(lang === 'fr'){
-				var x = dayOfWeek(date,delim);
-				switch(x){
-					case 0: return 'Dim'; break;
-					case 1: return 'Lun'; break;
-					case 2: return 'Mar'; break;
-					case 3: return 'Mer'; break;
-					case 4: return 'Jeu'; break;
-					case 5: return 'Ven'; break;
-					case 6: return 'Sam'; break;
-				}
+				return langAttr.fr.daysLetterShort[x];
 			}
 			else{
-				var x = dayOfWeek(date,delim);
-				switch(x){
-					case 0: return 'Sun'; break;
-					case 1: return 'Mon'; break;
-					case 2: return 'Tue'; break;
-					case 3: return 'Wed'; break;
-					case 4: return 'Thu'; break;
-					case 5: return 'Fri'; break;
-					case 6: return 'Sat'; break;
+				return langAttr.en.daysLetterShort[x];
+			}
+		}
+
+		function dayOfWeekLetterFull(date, delim){
+			var x = dayOfWeek(date,delim);
+			if(lang === 'fr'){
+				return langAttr.fr.daysLetterFull[x];
+			}
+			else{
+				return langAttr.en.daysLetterFull[x];
+			}
+		}
+
+		function monthLetterShort(date,delim){
+			var x = getMonth(date,delim);
+			if(lang === 'fr'){
+				return langAttr.fr.monthsLetterShort[x];
+			}
+			else{
+				return langAttr.en.monthsLetterShort[x];
+			}
+		}
+
+		function monthLetterFull(date,delim){
+			var x = getMonth(date,delim);
+			if(lang === 'fr'){
+				return langAttr.fr.monthsLetterFull[x];
+			}
+			else{
+				return langAttr.en.monthsLetterFull[x];
+			}
+		}
+
+		function toStringFormatted(date,delim,format){
+			var util = [
+			[''+getDay(date,delim),date.split(delim)[0],dayOfWeekLetterShort(date,delim),dayOfWeekLetterFull(date,delim)],
+			[''+getMonth(date,delim),date.split(delim)[1],monthLetterShort(date,delim),monthLetterFull(date,delim)],
+			['',''+(getYear(date,delim)%100),'',''+getYear(date,delim)]
+			];
+			var pointer = {table: -1, index: 0};
+			var result = '';
+			var f = format.toLowerCase();
+			for(var i=0;i<f.length;i++){
+				var go = true;
+				var incorrect = [false,false,false,false];
+				var now = 0;
+				if(f[i] == 'd'){
+					now = 0;
+				}
+				else if(f[i] == 'm'){
+					now = 1;
+				}
+				else if(f[i] == 'y'){
+					now = 2;
+					incorrect[0] = incorrect[2] = true;
+				}
+				else{
+					go = false;
+				}
+
+				if(go){
+					if(pointer.table != -1){
+						if(pointer.table!=now){
+							if(incorrect[pointer.index]){
+								throw "Date Format Exception: The date format is incorrect";
+							}
+							result += util[pointer.table][pointer.index];
+							pointer.table = now;
+							pointer.index = 0;
+						}
+						else if(pointer.index<3){
+							pointer.index++;
+							if(i == f.length-1){
+								if(incorrect[pointer.index]){
+									throw "Date Format Exception: The date format is incorrect";
+								}
+								result += util[pointer.table][pointer.index];
+							}
+						}
+						else{
+							throw "Date Format Exception: The date format is incorrect";
+						}
+					}
+					else{
+						pointer.table = now;
+						pointer.index = 0;
+					}
+				}
+				else{
+					if(pointer.table != -1){
+						if(incorrect[pointer.index]){
+							throw "Date Format Exception: The date format is incorrect";
+						}
+						result+= util[pointer.table][pointer.index] + f[i];
+						pointer.table = -1;
+					}
+					else{
+						result += f[i];
+					}
 				}
 			}
+
+			return result;
 		}
 
 		function dayDifference(date1, date2, delim){
@@ -333,6 +432,8 @@
 		/** PUBLIC **/
 
 		this.setDelim = function(d){
+			if((''+d).length == 0)
+				throw "Delimitor Length Exception: The delimitor provided have a length of zero";
 			var tmp = stringDate.split(delim);
 			delim = d;
 			stringDate = tmp[0]+d+tmp[1]+d+tmp[2];
@@ -403,8 +504,20 @@
 			return inRangeDate(first,second,stringDate,delim);
 		}
 
-		this.dayOfWeekLetters = function(){
-			return dayOfWeekLetters(stringDate,delim);
+		this.dayOfWeekLetterShort = function(){
+			return dayOfWeekLetterShort(stringDate,delim);
+		}
+
+		this.dayOfWeekLetterFull = function(){
+			return dayOfWeekLetterFull(stringDate,delim);
+		}
+
+		this.monthLetterShort = function(){
+			return monthLetterShort(stringDate,delim);
+		}
+
+		this.monthLetterFull = function(){
+			return monthLetterFull(stringDate,delim);
 		}
 
 		this.dayDifference = function(_date){
@@ -456,6 +569,10 @@
 
 		this.getLangage = function(){
 			return lang;
+		}
+
+		this.toStringFormatted = function(format){
+			return toStringFormatted(stringDate,delim,format);
 		}
 
 		/*if (obj instanceof Date2) return obj;
