@@ -96,6 +96,7 @@ date.toStringFormatted(format); // returns a string containing the date formatte
 * Mohamed Ali Touir
   * Github: [https://github.com/touir1](https://github.com/touir1)
   * Email: [touir.mat@gmail.com](mailto:touir.mat@gmail.com)
+  * Twitter: [@TouirMohamedAli](https://twitter.com/TouirMohamedAli)
 
 ## License ##
 
